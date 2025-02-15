@@ -3,7 +3,8 @@
 
 # include "phonebook.hpp"
 
-class Contact{
+class Contact
+{
     private:
         std::string firstName;
         std::string lastName;
@@ -16,6 +17,5 @@ class Contact{
         void    displayContact(int index) const;
         void    displayFullInfo() const;
         ~Contact();
-
 };
 #endif

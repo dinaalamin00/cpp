@@ -1,10 +1,9 @@
 #include "phonebook.hpp"
-#include <iostream>
 
-phoneBook::phoneBook() : contactCount(0), oldestIndex(0) {}
+PhoneBook::PhoneBook() : contactCount(0), oldestIndex(0) {}
 
-phoneBook::~phoneBook(){}
-void    phoneBook::addContact()
+PhoneBook::~PhoneBook(){}
+void    PhoneBook::addContact()
 {
     Contact newContact;
 
@@ -21,38 +20,34 @@ void    phoneBook::addContact()
     }
 }
 
-void    phoneBook::searchContact() const
+void    PhoneBook::searchContact() const
 {
-    if (contactCount == 0)
-        std::cout<<"PhoneBook is empty!" << std::endl;
+    std::string input;
+    std::cout<< "Enter an Index: " << std::endl;
+    std::getline(std::cin, input);
+    check_empty_input(input, "an Index");
+    
+    int     index = -1;
+    if (input.length() == 1 && input[0] >= '0' && input[0] <= '7')
+        index = input[0] - '0';
+    if (index < 0 || index >= contactCount)
+        std::cout<<"Invalid Index!" << std::endl;
     else
-    {
-        std::string input;
-        std::cout<< "Enter an Index: " << std::endl;
-        std::getline(std::cin, input);
-        
-        int     index = -1;
-        if (input.length() == 1 && input[0] >= '0' && input[0] <= '7')
-            index = input[0] - '0';
-        if (index < 0 || index > contactCount)
-            std::cout<<"Invalid Index!" << std::endl;
-        else
-            contact[index].displayFullInfo();
-    }
+        contact[index].displayFullInfo();
 }
 
-void    phoneBook::displayAllContact() const
+void    PhoneBook::displayAllContact() const
 {
     if (contactCount == 0)
         std::cout<<"PhoneBook is empty!" << std::endl;
     else
     {
-        std::cout<< "----------------------------------" << std::endl;
-        std::cout<< "Index     |First Name|Last Name |NickName  " << std::endl;
-        std::cout<< "----------------------------------" << std::endl;
+        std::cout<< "+--------------------------------------+" << std::endl;
+        std::cout<< "|Index|First Name|Last Name | NickName |" << std::endl;
+        std::cout<< "+--------------------------------------+" << std::endl;
         for (int i = 0; i < contactCount; i++)
             contact[i].displayContact(i);
-        std::cout<< "----------------------------------" << std::endl;
-
+        std::cout<< "+--------------------------------------+" << std::endl;
+        searchContact();
     }
 }

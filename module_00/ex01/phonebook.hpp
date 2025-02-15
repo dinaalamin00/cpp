@@ -1,22 +1,25 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-# include<iostream>
+# include <iostream>
 # include <string>
-#include "contact.hpp"
+# include "contact.hpp"
+#include	<stdlib.h>
 
-class phoneBook{
+class   PhoneBook
+{
     private:
         Contact contact[8];
         int     contactCount;
         int     oldestIndex;
     public:
-        phoneBook();
-        ~phoneBook();
+        PhoneBook();
+        ~PhoneBook();
         void    addContact();
         void    searchContact() const;
         void    displayAllContact() const;
-        // int     isFull() const;
 };
+
+void    check_empty_input(std::string input, std::string title);
 
 #endif

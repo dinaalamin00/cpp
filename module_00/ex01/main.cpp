@@ -2,7 +2,7 @@
 
 int main()
 {
-    phoneBook   phonebook;
+    PhoneBook   phonebook;
     std::string command;
 
     while(1)
@@ -16,7 +16,7 @@ int main()
         else if (command == "ADD")
             phonebook.addContact();
         else if (command == "SEARCH")
-            phonebook.searchContact();
+            phonebook.displayAllContact();
         else
             std::cout<<"Invalid Command!\n";
     }
