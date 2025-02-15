@@ -3,7 +3,7 @@
 
 # include "phonebook.hpp"
 
-class contact{
+class Contact{
     private:
         std::string firstName;
         std::string lastName;
@@ -11,11 +11,11 @@ class contact{
         std::string phoneNumber;
         std::string darkestSecret;
     public:
-        contact(){}
-        ~contact(){}
+        Contact();
         void    setContact();
         void    displayContact(int index) const;
-        void    displayAllContacts() const;
+        void    displayFullInfo() const;
+        ~Contact();
 
 };
 #endif
