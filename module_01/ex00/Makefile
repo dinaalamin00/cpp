@@ -1,10 +1,12 @@
-CXX = g++
+
+
+CXX = c++
+
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = phonebook
+NAME = Zombie
 
-SRCS =  Zombie.cpp main.cpp
-
+SRCS =  main.cpp newZombie.cpp randomChump.cpp Zombie.cpp 
 OBJS = $(SRCS:.cpp=.o)
 
 # Default rule
