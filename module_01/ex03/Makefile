@@ -4,9 +4,9 @@ CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = 
+NAME = Weapon
 
-SRCS =  
+SRCS =  Weapon.cpp main.cpp HumanB.cpp HumanA.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default rule

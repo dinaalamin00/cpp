@@ -10,13 +10,10 @@ class HumanA
         Weapon  &weaponA;
         /* data */
     public:
-        HumanA(std::string name, Weapon Weapon) : name(name), weaponA (Weapon){}
+        HumanA(std::string name, Weapon &Weapon);
         ~HumanA();
-        void    attack(){
-            std::cout<<name<< "attacks with their" << weaponA.getType() <<std::endl;
-        }
+        void    attack() const;
 };
-
 
 
 #endif

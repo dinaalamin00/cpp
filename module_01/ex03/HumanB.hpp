@@ -7,15 +7,13 @@ class HumanB
 {
     private:
         std::string name;
-        Weapon  &weaponB;
+        Weapon  *weaponB;
         /* data */
     public:
-        HumanB(std::string name, Weapon Weapon):name(name), weaponB(null) {}
+        HumanB(std::string name);
         ~HumanB();
-        void    setWeapn(Weapon Weapon);
-        void    attack(){
-            std::cout<<name<< "attacks with their" << weaponB.getType() <<std::endl;
-        }
+        void    setWeapon(Weapon &Weapon);
+        void    attack() const;
 };
 
 
