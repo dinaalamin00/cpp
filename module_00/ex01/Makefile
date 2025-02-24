@@ -1,20 +1,17 @@
-CXX = g++
+CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = phonebook
 
-SRCS =  phonebook.cpp contact.cpp main.cpp
-
+SRCS =  contact.cpp phonebook.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-# Default rule
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
-# Compiling .cpp files to .o files
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 

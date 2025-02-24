@@ -6,12 +6,11 @@
 /*   By: diahmed <diahmed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 19:53:43 by diahmed           #+#    #+#             */
-/*   Updated: 2024/12/01 20:22:37 by diahmed          ###   ########.fr       */
+/*   Updated: 2025/02/24 12:24:23 by diahmed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <iostream>
-// # include <string>
 
 int	main(int argc, char **argv)
 {

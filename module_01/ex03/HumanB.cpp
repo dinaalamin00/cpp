@@ -1,7 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diahmed <diahmed@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/24 12:00:48 by diahmed           #+#    #+#             */
+/*   Updated: 2025/02/24 12:14:10 by diahmed          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "HumanB.hpp"
 
 HumanB::HumanB(std::string name):name(name), weaponB(NULL) {}
+
 HumanB::~HumanB() {}
+
 void    HumanB::setWeapon(Weapon &Weapon)
 {
     HumanB::weaponB = &Weapon;
@@ -10,7 +24,7 @@ void    HumanB::setWeapon(Weapon &Weapon)
 void    HumanB::attack() const
 {
     if (weaponB)
-        std::cout<<name<< "attacks with their" << weaponB->getType() <<std::endl;
+        std::cout<<name<< " attacks with their " << weaponB->getType() <<std::endl;
     else
         std::cout << name<< " has no weapon to attack with!" << std::endl;
 }

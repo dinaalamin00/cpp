@@ -1,7 +1,16 @@
-#include "phonebook.hpp"
-#include "contact.hpp"
-#include <iomanip>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diahmed <diahmed@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 21:59:29 by diahmed           #+#    #+#             */
+/*   Updated: 2025/02/15 22:00:01 by diahmed          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "phonebook.hpp"
 
 Contact::Contact(){}
 Contact::~Contact(){}

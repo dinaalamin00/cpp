@@ -2,9 +2,9 @@ CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = Zombie
+NAME = harlFilter
 
-SRCS =  main.cpp newZombie.cpp randomChump.cpp Zombie.cpp 
+SRCS =  Harl.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
@@ -22,5 +22,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re

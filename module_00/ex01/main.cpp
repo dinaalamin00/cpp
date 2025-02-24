@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diahmed <diahmed@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 22:00:40 by diahmed           #+#    #+#             */
+/*   Updated: 2025/02/24 12:33:09 by diahmed          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "phonebook.hpp"
 
 int main()
@@ -7,7 +19,7 @@ int main()
 
     while(1)
     {
-        std::cout<<"Enter a Command[ADD, SEARCH, EXIT]: "<<std::endl;
+        std::cout<<"Enter a Command [ ADD | SEARCH | EXIT ]: ";
         std::getline(std::cin, command);
         if (std::cin.eof())
             break ;
