@@ -31,6 +31,8 @@ void Harl::complain(std::string level)
     std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 	int index;
+	index = -1;
+
     for (int i=0; i<4; i++)
     {
         if (level == levels[i])
@@ -41,18 +43,21 @@ void Harl::complain(std::string level)
     }
 	switch (index)
 	{
+		case -1:
+			break ;
 		case 0:
-			(this->*(levelPtr[index]))();
+			(this->*(levelPtr[0]))();
+			/* fall through */
 		case  1:
-			(this->*(levelPtr[index]))();
+			(this->*(levelPtr[1]))();
+			/* fall through */
 		case  2:
-			/* code */
-			break;
+			(this->*(levelPtr[2]))();
+			/* fall through */
 		case  3:
-			/* code */
-			break;
-		default:
-			break;
+			(this->*(levelPtr[3]))();
+			/* fall through */
+		// default:
 	}
     std::cout<< "Level not recognized!" <<std::endl;
 }

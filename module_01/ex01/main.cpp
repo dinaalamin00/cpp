@@ -14,20 +14,15 @@
 
 int main()
 {
-    Zombie  stackZomb();
-    Zombie  *heapZomb;
-    
-    heapZomb = newZombie("heap");
-    heapZomb->announce();
-    delete(heapZomb);
+    Zombie  *Zomb;
+    int     n;
 
-    randomChump("Stack");
+    n = 3;
+    Zomb = zombieHorde(n, "Bob");
+    for (int i=0; i<n; i++)
+        Zomb[i].announce();
+   
+    delete[] (Zomb);
+    return 0;
 
-
-
-    // z1 = newZombie("ZombieHeap")   // Allocated on heap
-    // z1->announce()
-    // delete z1   // Destructor is called
-
-    // randomChump("ZombieStack")   // Created and destroyed automatically
 }
