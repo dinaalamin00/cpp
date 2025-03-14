@@ -1,23 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diahmed <diahmed@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/14 12:52:46 by diahmed           #+#    #+#             */
+/*   Updated: 2025/03/14 12:52:48 by diahmed          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Harl.hpp"
 
-int main()
+int main(int ac, char **av)
 {
     Harl harl;
 
-    std::cout << "DEBUG level:" << std::endl;
-    harl.complain("DEBUG");
+	if (ac != 2)
+	{
+		std::cout<< "wrong num of arg" << std::endl;
+		return 1;
+	}
 
-    std::cout << "\nINFO level:" << std::endl;
-    harl.complain("INFO");
-
-    std::cout << "\nWARNING level:" << std::endl;
-    harl.complain("WARNING");
-
-    std::cout << "\nERROR level:" << std::endl;
-    harl.complain("ERROR");
-
-    std::cout << "\nunknown level:" << std::endl;
-    harl.complain("UNKNOWN");
-
+	harl.complain((std::string)av[1]);
     return 0;
 }

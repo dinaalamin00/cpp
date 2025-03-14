@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diahmed <diahmed@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/14 12:30:26 by diahmed           #+#    #+#             */
+/*   Updated: 2025/03/14 12:34:05 by diahmed          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Harl.hpp"
 
 int main()
@@ -16,7 +28,7 @@ int main()
     std::cout << "\nERROR level:" << std::endl;
     harl.complain("ERROR");
 
-    std::cout << "\nunknown level:" << std::endl;
+    std::cout << "\nUnknown Level:" << std::endl;
     harl.complain("UNKNOWN");
 
     return 0;

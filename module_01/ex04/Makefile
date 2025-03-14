@@ -2,7 +2,7 @@ CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = sed
+NAME = Sed
 
 SRCS =  main.cpp sed.cpp
 OBJS = $(SRCS:.cpp=.o)

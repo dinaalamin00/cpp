@@ -6,7 +6,7 @@
 /*   By: diahmed <diahmed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 10:25:17 by diahmed           #+#    #+#             */
-/*   Updated: 2025/03/09 15:10:14 by diahmed          ###   ########.fr       */
+/*   Updated: 2025/03/14 12:27:01 by diahmed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ class sed
 		sed(std::string file, std::string str1, std::string str2);
 		~sed();
 		bool	process_file();
-	// private:
-	// 	std::string	replace_content(std::string file);
 };
 
 #endif
