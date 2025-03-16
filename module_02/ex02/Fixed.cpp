@@ -37,29 +37,25 @@ float Fixed::toFloat( void ) const // fixed point to float
 
 Fixed&  Fixed::operator+(const Fixed& other)
 {
-    if (this != &other)
     this->fixedPointValue = this->fixedPointValue + other.fixedPointValue;
     return *this;
 }
 
 Fixed&  Fixed::operator-(const Fixed& other)
 {
-    if (this != &other)
     this->fixedPointValue = this->fixedPointValue - other.fixedPointValue;
     return *this;
 }
 
 Fixed&  Fixed::operator*(const Fixed& other)
 {
-    if (this != &other)
-        this->fixedPointValue = this->fixedPointValue * other.fixedPointValue;
+    this->fixedPointValue = this->toInt() * other.toInt() / 256;
     return *this;
 }
 
 Fixed&  Fixed::operator/(const Fixed& other)
 {
-    if (this != &other)
-        this->fixedPointValue = this->fixedPointValue / other.fixedPointValue;
+    this->fixedPointValue = this->toInt() / other.toInt() * 256;
     return *this;
 }
 
@@ -95,18 +91,49 @@ bool  Fixed::operator!=(const Fixed& other)
 }
 
 
-Fixed& Fixed::min(Fixed& a, Fixed& b) {
+Fixed& Fixed::min(Fixed& a, Fixed& b)
+{
     return (a < b) ? a : b;
 }
 
-const Fixed& Fixed::min(const Fixed& a, const Fixed& b) {
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+{
     return (a < b) ? a : b;
 }
 
-Fixed& Fixed::max(Fixed& a, Fixed& b) {
+Fixed& Fixed::max(Fixed& a, Fixed& b)
+{
     return (a > b) ? a : b;
 }
 
-const Fixed& Fixed::max(const Fixed& a, const Fixed& b) {
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b) 
+{
     return (a > b) ? a : b;
+}
+
+Fixed& Fixed::operator++()
+{
+    ++this->fixedPointValue;
+    return *this;
+
+}
+Fixed& Fixed::operator++()
+{
+    Fixed   temp(*this);
+
+    ++this->fixedPointValue;
+    return temp;
+}
+
+Fixed& Fixed::operator--()
+{
+    --this->fixedPointValue;
+    return *this;
+} 
+Fixed& Fixed::operator--()
+{
+    Fixed   temp(*this);
+
+    --this->fixedPointValue;
+    return temp;
 }
