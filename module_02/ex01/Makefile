@@ -1,10 +1,10 @@
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
-NAME = 
+NAME = Fixed
 
-SRCS =  main.cpp 
+SRCS =  main.cpp Fixed.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
