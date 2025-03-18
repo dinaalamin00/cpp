@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diahmed <diahmed@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/18 17:09:02 by diahmed           #+#    #+#             */
+/*   Updated: 2025/03/18 17:11:58 by diahmed          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
@@ -20,8 +32,6 @@ class Fixed
         
         float toFloat( void ) const;
         int toInt( void ) const;
-        // int getRawBits(void) const;
-        // void setRawBits(int const raw);
     };
     
 std::ostream& operator<<(std::ostream &outputStream, const Fixed& FixedObj);
