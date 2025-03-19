@@ -14,7 +14,7 @@
 
 ClapTrap::ClapTrap(): name("Default"), hitPoints(10), energyPoints(10), attackDamage(0)
 {
-	// std::cout<< "ClapTrap "<<name<< "created!" <<std::endl;
+	std::cout<< "ClapTrap "<<name<< "created!" <<std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string &_name): name(_name),  hitPoints(10), energyPoints(10), attackDamage(0)
@@ -32,6 +32,11 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
         attackDamage = other.attackDamage;
     }
     return *this;
+}
+
+ClapTrap::ClapTrap(const ClapTrap& other)
+{
+	*this = other;
 }
 
 ClapTrap::~ClapTrap()
@@ -59,14 +64,9 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	hitPoints = hitPoints - amount;
+	hitPoints -= amount;
 	std::cout<< "ClapTrap " <<name<< " takes " <<amount<< " damage! Remaining Hit Points: " <<hitPoints;
 	std::cout << std::endl;
-	// if (hitPoints <= 0)
-	// {
-	// 	std::cout<< "ClapTrap " <<name<< " is destroyed!";
-	// 	std::cout << std::endl;
-	// }
 }
 
 //Restores hit points by amount.
@@ -79,15 +79,9 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout<<name<<  " can't repair!" <<std::endl;
 		return ;
 	}
-	hitPoints = hitPoints + amount;
-	energyPoints = energyPoints - 1;
+	hitPoints += amount;
+	energyPoints -= 1;
 	std::cout<< "ClapTrap " <<name<< " repairs itself, recovering " <<amount<< " Hit Points!";
 	std::cout << std::endl;
 
 }
-
-
-
-
-
-
