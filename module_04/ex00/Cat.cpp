@@ -4,13 +4,14 @@
 
 Cat::Cat()
 {
+    type = "Cat";
 	std::cout<< "Cat Default Constructor called" <<std::endl;
 }
 
-Cat::Cat (const std::string &_type) : type(_type)
-{
-	std::cout<< "Cat Default Constructor called" <<std::endl;
-}
+// Cat::Cat (const ) : type("Cat")
+// {
+// 	std::cout<< "Cat Default Constructor called" <<std::endl;
+// }
 
 
 Cat& Cat::operator=(const Cat& other) {
@@ -32,7 +33,7 @@ Cat::~Cat()
 }
 
 
-void    Cat::makeSound()
+void    Cat::makeSound() const
 {
-    std::cout<< "Cat don’t bark!!!" <<std::endl;
+    std::cout<< "Meow!!!!" <<std::endl;
 }

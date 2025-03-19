@@ -5,17 +5,19 @@
 
 #include <iostream>
 #include <string>
+#include "Animal.hpp"
+
 
 class Cat : public Animal
 {
-	protected:
-
 	public:
         Cat();
-        Cat(const std::string &name);
         Cat(const Cat &other);
         Cat&	operator=(const Cat &other);
         ~Cat();
+
+        void    makeSound() const;
+
 
 };
 

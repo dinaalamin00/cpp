@@ -4,13 +4,14 @@
 
 Animal::Animal()
 {
+    type = "Default";
 	std::cout<< "Animal Default Constructor called" <<std::endl;
 }
 
-Animal::Animal (const std::string &_type) : type(_type)
-{
-	std::cout<< "Animal Default Constructor called" <<std::endl;
-}
+// Animal::Animal (const std::string &_type) : type(_type)
+// {
+// 	std::cout<< "Animal Constructor called" <<std::endl;
+// }
 
 
 Animal& Animal::operator=(const Animal& other) {
@@ -26,7 +27,7 @@ Animal::Animal(const Animal& other)
 	*this = other;
 }
 
-Animal::~Animal()
+ Animal::~Animal()
 {
     std::cout<< "Animal Destructor called" <<std::endl;
 }
@@ -37,7 +38,7 @@ std::string Animal::getType() const
 }
 
 
-void    Animal::makeSound()
+ void    Animal::makeSound() const
 {
     std::cout<< "Animal Sound!!!" <<std::endl;
 }
