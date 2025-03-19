@@ -2,9 +2,9 @@ CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = Fixed
+NAME = Brain
 
-SRCS =  main.cpp Fixed.cpp
+SRCS =  main.cpp Animal.cpp Dog.cpp Cat.cpp  Brain.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

@@ -1,22 +1,47 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {
-    const Animal* meta = new Animal(); // Creates an Animal (can be empty type)
-    const Animal* j = new Dog();       // Creates a Dog
-    const Animal* i = new Cat();       // Creates a Cat
+    std::cout << "Creating Animals:\n";
     
-    std::cout << j->getType() << std::endl; // Output the type of Dog
-    std::cout << i->getType() << std::endl; // Output the type of Cat
-    
-    i->makeSound(); // Will output the Cat sound
-    j->makeSound(); // Will output the Dog sound
-    
-    // Cleanup
+    const Animal* meta = new Animal();
+    const Animal* dog = new Dog();
+    const Animal* cat = new Cat();
+
+    std::cout << "\nGetting Types:\n";
+    std::cout << "Dog Type: " << dog->getType() << std::endl;
+    std::cout << "Cat Type: " << cat->getType() << std::endl;
+    std::cout << "Meta Type: " << meta->getType() << std::endl;
+
+    std::cout << "\nMaking Sounds:\n";
+    meta->makeSound();
+    dog->makeSound();  
+    cat->makeSound();  
+
+    std::cout << "\nDeleting Animals:\n";
     delete meta;
-    delete j;
+    delete dog;
+    delete cat;
+
+    std::cout << "\n\n-----------------------------------------------------\n\n";
+
+    std::cout << "Creating a WrongAnimal and a WrongCat:\n";
+    
+    const WrongAnimal* wmeta = new WrongAnimal();
+    const WrongAnimal* i = new WrongCat();
+
+    std::cout << "WrongAnimal type: " << wmeta->getType() << std::endl;
+    std::cout << "WrongCat type: " << i->getType() << std::endl;
+
+    std::cout << "Making sounds:\n";
+    wmeta->makeSound(); // Expected: "Some generic wrong animal sound!"
+    i->makeSound();    // Expected: "Some generic wrong animal sound!" (Not "Meow?")
+    
+    delete wmeta;
     delete i;
 
     return 0;

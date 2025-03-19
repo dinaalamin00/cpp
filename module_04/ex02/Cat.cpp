@@ -2,7 +2,7 @@
 #include "Cat.hpp"
 
 
-Cat::Cat()
+Cat::Cat(): brain(new Brain())
 {
     type = "Cat";
 	std::cout<< "Cat Default Constructor called" <<std::endl;
@@ -18,7 +18,10 @@ Cat& Cat::operator=(const Cat& other)
 {
     std::cout<< "Cat Assignment Constructor called" <<std::endl;
     if (this != &other)
+    {
         type = other.type;
+        *brain = *other.brain;
+    }
     return *this;
 }
 
