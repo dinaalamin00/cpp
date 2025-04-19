@@ -2,7 +2,7 @@ CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = Animal
+NAME = Bureaucrat
 
 SRCS =  main.cpp Bureaucrat.cpp
 OBJS = $(SRCS:.cpp=.o)
