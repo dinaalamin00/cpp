@@ -1,8 +1,8 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 
 Bureaucrat::Bureaucrat(){}
-
 Bureaucrat::~Bureaucrat(){}
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade)
@@ -14,32 +14,19 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade
         throw GradeTooLowException();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other)
-{
-    *this = other;
-}
+Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade){}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
-    (void)other;
-    // if (this != &other)
-    // {
-    //     _grade = other._grade;
-    // }
+    if (this != &other)
+    {
+        _grade = other._grade;
+    }
     return *this;
 }
 
-
-
-int	Bureaucrat::getGrade() const
-{
-    return _grade;
-}
-
-const std::string&	Bureaucrat::getName() const
-{
-    return _name;
-}
+int	Bureaucrat::getGrade() const {   return _grade;}
+const std::string&	Bureaucrat::getName() const {    return _name;}
 
 std::ostream& operator<<(std::ostream &outputStream, const Bureaucrat& Obj)
 {
@@ -49,7 +36,7 @@ std::ostream& operator<<(std::ostream &outputStream, const Bureaucrat& Obj)
 
 void Bureaucrat::incrementGrade()
 {
-    _grade--;
+    _grade--; // check or increment first???
     if (_grade < 1)
         throw GradeTooHighException();
 }
@@ -60,12 +47,18 @@ void Bureaucrat::decrementGrade()
         throw GradeTooLowException();
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw()
-{
-    return "Grade too Low ";
-}
+const char* Bureaucrat::GradeTooLowException::what() const throw(){ return "Grade too Low "; }
+const char* Bureaucrat::GradeTooHighException::what() const throw(){ return "Grade too High "; }
 
-const char* Bureaucrat::GradeTooHighException::what() const throw()
+void    Bureaucrat::signForm(Form &F) const
 {
-    return "Grade too High ";
+    try
+    {
+        F.beSigned(*this);
+        std::cout<< this->getName()<< " signed " << F.getName()<<std::endl;   
+    }
+    catch(const std::exception& e)
+    {
+        std::cout<< this->getName()<< " couldn’t sign " << F.getName()<<std::endl;
+    }
 }

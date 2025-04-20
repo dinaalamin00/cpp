@@ -1,42 +1,42 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
     try
     {
-        Bureaucrat  B1("B1", 150);
-        std::cout<< B1 <<std::endl;
-        
-        B1.incrementGrade();
-        std::cout<< B1 <<std::endl;
+        Bureaucrat  B1("B1", 50);
+        Bureaucrat  B2("B2", 1);
 
-        B1.decrementGrade();
-        std::cout<< B1 <<std::endl;
+        Form F1("F1", 30, 20);
+        Form F2("F2", 100, 80);
         
-        B1.decrementGrade(); // exception thrown
+        std::cout<< F1 <<std::endl;
+        std::cout<< F2 <<std::endl;
+
+        std::cout<<"---------------------------------------------------------\n";
+        
+        B1.signForm(F1);
+        B1.signForm(F2);
+
+        std::cout<<"---------------------------------------------------------\n\n";
+
+        std::cout<< F1 <<std::endl;
+        std::cout<< F2 <<std::endl;
+        
+        std::cout<<"---------------------------------------------------------\n";
+        
+        B2.signForm(F1);
+        B2.signForm(F2);
+        
+        std::cout<<"---------------------------------------------------------\n\n";
+        
+        std::cout<< F1 <<std::endl;
+        std::cout<< F2 <<std::endl;
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
-    try
-    {
-        Bureaucrat  B2("B1", 1);
-        std::cout<< B2 <<std::endl;
-
-        B2.decrementGrade();
-        std::cout<< B2 <<std::endl;
-
-        B2.incrementGrade();
-        std::cout<< B2 <<std::endl;
-
-        B2.incrementGrade(); // exception thrown
-        
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    
     return 0;
 }

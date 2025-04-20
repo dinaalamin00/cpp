@@ -1,7 +1,14 @@
-#include "Bureaucrat.hpp"
+#ifndef FORM_HPP
+#define FORM_HPP
+
 #include <stdbool.h>
+#include <iostream>
+#include <string>
+#include <exception>
 
 
+
+class Bureaucrat;
 
 class Form
 {
@@ -17,13 +24,25 @@ class Form
         Form&	operator=(const Form &other);
         ~Form();
 
-        class GradeTooHighException : public std::exception;
-        class GradeTooLowException  : public std::exception;
+        class GradeTooHighException : public std::exception
+        {
+            const char* what() const throw();
+        };
+        class GradeTooLowException  : public std::exception
+        {
+            const char* what() const throw();
+        };
+
+        //getters
         const std::string&	getName() const;
         bool	getSign() const;
         int	getGradeSign() const;
         int	getGradeExec() const;
 
-        void    beSigned(Bureaucrat &B);
+        void    beSigned(const Bureaucrat &B);
 };
+
+std::ostream& operator<<(std::ostream &outputStream, const Form& Obj);
+
+#endif
 
