@@ -1,5 +1,5 @@
-#ifndef AFORM_HPP
-#define AFORM_HPP
+#ifndef AForm_HPP
+#define AForm_HPP
 
 #include <stdbool.h>
 #include <iostream>
@@ -10,25 +10,30 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
     private:
         const std::string _name;
-        bool                _signed;
         const int           _grade_toSign;
         const int       _grade_toExec;
+        bool                _signed;
     public:
-        Form();
-        Form(const std::string &name, int grade_sign, int grade_exec);
-        Form(const Form &other);
-        Form&	operator=(const Form &other);
-        ~Form();
+        AForm();
+        AForm(const std::string &name, int grade_sign, int grade_exec);
+        AForm(const AForm &other);
+        AForm&	operator=(const AForm &other);
+        ~AForm();
 
         class GradeTooHighException : public std::exception
         {
             const char* what() const throw();
         };
         class GradeTooLowException  : public std::exception
+        {
+            const char* what() const throw();
+        };
+
+        class NotSignedException  : public std::exception
         {
             const char* what() const throw();
         };
@@ -40,9 +45,11 @@ class Form
         int	getGradeExec() const;
 
         void    beSigned(const Bureaucrat &B);
+
+        virtual void    execute(Bureaucrat const & executor) const = 0;
 };
 
-std::ostream& operator<<(std::ostream &outputStream, const Form& Obj);
+std::ostream& operator<<(std::ostream &outputStream, const AForm& Obj);
 
 #endif
 
