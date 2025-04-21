@@ -9,16 +9,15 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-
+// class AForm;
 
 class ShrubberyCreationForm : public AForm
 {
     private:
-        int _gradeSign = 145;
-        int _gradeExec = 137;
+        const std::string _target;
     public:
         ShrubberyCreationForm();
-        ShrubberyCreationForm(std::string& target);
+        ShrubberyCreationForm(const std::string& target);
         ShrubberyCreationForm(const ShrubberyCreationForm& other);
         ShrubberyCreationForm&	operator=(const ShrubberyCreationForm &other);
         ~ShrubberyCreationForm();

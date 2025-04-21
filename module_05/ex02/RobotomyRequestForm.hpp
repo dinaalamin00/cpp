@@ -9,6 +9,7 @@
 #include "Bureaucrat.hpp"
 
 
+// class AForm;
 
 class RobotomyRequestForm : public AForm
 {
@@ -18,7 +19,7 @@ class RobotomyRequestForm : public AForm
         std::string    _target;
     public:
         RobotomyRequestForm();
-        RobotomyRequestForm(std::string& target);
+        RobotomyRequestForm(const std::string& target);
         RobotomyRequestForm(const RobotomyRequestForm& other);
         RobotomyRequestForm&	operator=(const RobotomyRequestForm &other);
 

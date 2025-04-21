@@ -1,13 +1,11 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45) {}
+RobotomyRequestForm::RobotomyRequestForm() {}
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : _target(target) {}
-
-AForm::AForm(const AForm& other) : _name(other._name), _grade_toSign(other._grade_toSign), _grade_toExec(other._grade_toExec){}
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("RobotomyRequestForm", 72, 45) ,_target(target) {}
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
 {
@@ -17,10 +15,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 
 void    RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-    if(!getSign())
-        throw NotSignedException();
-    if (executor.getGrade() > getGradeExec())
-        throw GradeTooLowException();
+    AForm::canExecute(executor);
     std::cout<< "Drilling noises..." <<std::endl;
 
     if (std::rand() % 2 )

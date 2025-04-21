@@ -1,42 +1,77 @@
+// #include "Bureaucrat.hpp"
+// #include "AForm.hpp"
+
+// int main()
+// {
+//     try
+//     {
+//         Bureaucrat  B1("B1", 50);
+//         Bureaucrat  B2("B2", 1);
+
+//         Form F1("F1", 30, 20);
+//         Form F2("F2", 100, 80);
+        
+//         std::cout<< F1 <<std::endl;
+//         std::cout<< F2 <<std::endl;
+
+//         std::cout<<"---------------------------------------------------------\n";
+        
+//         B1.signForm(F1);
+//         B1.signForm(F2);
+
+//         std::cout<<"---------------------------------------------------------\n\n";
+
+//         std::cout<< F1 <<std::endl;
+//         std::cout<< F2 <<std::endl;
+        
+//         std::cout<<"---------------------------------------------------------\n";
+        
+//         B2.signForm(F1);
+//         B2.signForm(F2);
+        
+//         std::cout<<"---------------------------------------------------------\n\n";
+        
+//         std::cout<< F1 <<std::endl;
+//         std::cout<< F2 <<std::endl;
+//     }
+//     catch(const std::exception& e)
+//     {
+//         std::cerr << e.what() << '\n';
+//     }
+//     return 0;
+// }
+
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include <iostream>
 
-int main()
-{
-    try
-    {
-        Bureaucrat  B1("B1", 50);
-        Bureaucrat  B2("B2", 1);
+int main() {
+    try {
+        Bureaucrat alice("Alice", 1);       // Top-grade bureaucrat
+        Bureaucrat bob("Bob", 50);          // Mid-grade bureaucrat
+        Bureaucrat charlie("Charlie", 140); // Low-grade bureaucrat
 
-        Form F1("F1", 30, 20);
-        Form F2("F2", 100, 80);
-        
-        std::cout<< F1 <<std::endl;
-        std::cout<< F2 <<std::endl;
+        ShrubberyCreationForm shrub("Home");
+        RobotomyRequestForm robot("Marvin");
+        PresidentialPardonForm pardon("Ford");
 
-        std::cout<<"---------------------------------------------------------\n";
-        
-        B1.signForm(F1);
-        B1.signForm(F2);
+        // Signing forms
+        charlie.signForm(shrub);  // Should succeed
+        bob.signForm(robot);      // Should succeed
+        alice.signForm(pardon);   // Should succeed
 
-        std::cout<<"---------------------------------------------------------\n\n";
+        std::cout << std::endl;
 
-        std::cout<< F1 <<std::endl;
-        std::cout<< F2 <<std::endl;
-        
-        std::cout<<"---------------------------------------------------------\n";
-        
-        B2.signForm(F1);
-        B2.signForm(F2);
-        
-        std::cout<<"---------------------------------------------------------\n\n";
-        
-        std::cout<< F1 <<std::endl;
-        std::cout<< F2 <<std::endl;
+        // Executing forms
+        charlie.executeForm(shrub); // Should succeed
+        bob.executeForm(robot);     // Should succeed / fail 50%
+        alice.executeForm(pardon);  // Should succeed
+
+    } catch (std::exception& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
     }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+
     return 0;
 }
