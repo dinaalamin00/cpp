@@ -5,23 +5,21 @@
 #include <string>
 #include <exception>
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-class Intern : public AForm
+class AForm; 
+class Intern
 {
-    private:
-        /* data */
     public:
-        Intern(/* args */);
+        Intern();
+        Intern(const Intern& other);
+        Intern& operator=(const Intern& other);
         ~Intern();
         AForm   *makeForm(const std::string& fName, const std::string& target);
 };
 
-Intern::Intern(/* args */)
-{
-}
 
-Intern::~Intern()
-{
-}
 
 #endif

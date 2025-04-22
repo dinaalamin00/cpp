@@ -1,76 +1,34 @@
-// #include "Bureaucrat.hpp"
-// #include "AForm.hpp"
-
-// int main()
-// {
-//     try
-//     {
-//         Bureaucrat  B1("B1", 50);
-//         Bureaucrat  B2("B2", 1);
-
-//         Form F1("F1", 30, 20);
-//         Form F2("F2", 100, 80);
-        
-//         std::cout<< F1 <<std::endl;
-//         std::cout<< F2 <<std::endl;
-
-//         std::cout<<"---------------------------------------------------------\n";
-        
-//         B1.signForm(F1);
-//         B1.signForm(F2);
-
-//         std::cout<<"---------------------------------------------------------\n\n";
-
-//         std::cout<< F1 <<std::endl;
-//         std::cout<< F2 <<std::endl;
-        
-//         std::cout<<"---------------------------------------------------------\n";
-        
-//         B2.signForm(F1);
-//         B2.signForm(F2);
-        
-//         std::cout<<"---------------------------------------------------------\n\n";
-        
-//         std::cout<< F1 <<std::endl;
-//         std::cout<< F2 <<std::endl;
-//     }
-//     catch(const std::exception& e)
-//     {
-//         std::cerr << e.what() << '\n';
-//     }
-//     return 0;
-// }
-
+#include "Intern.hpp"
 #include "Bureaucrat.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include <iostream>
 
 int main() {
-    try {
-        Bureaucrat alice("Alice", 1);       // Top-grade bureaucrat
-        Bureaucrat bob("Bob", 50);          // Mid-grade bureaucrat
-        Bureaucrat charlie("Charlie", 140); // Low-grade bureaucrat
+    Intern intern;
+    Bureaucrat bob("Bob", 1);
 
-        ShrubberyCreationForm shrub("Home");
-        RobotomyRequestForm robot("Marvin");
-        PresidentialPardonForm pardon("Ford");
+    AForm* form1 = intern.makeForm("robotomy request", "Bender");
+    if (form1) {
+        bob.signForm(*form1);
+        bob.executeForm(*form1);
+        delete form1;
+    }
 
-        // Signing forms
-        charlie.signForm(shrub);  // Should succeed
-        bob.signForm(robot);      // Should succeed
-        alice.signForm(pardon);   // Should succeed
+    AForm* form2 = intern.makeForm("presidential pardon", "Ford Prefect");
+    if (form2) {
+        bob.signForm(*form2);
+        bob.executeForm(*form2);
+        delete form2;
+    }
 
-        std::cout << std::endl;
+    AForm* form3 = intern.makeForm("shrubbery creation", "Garden");
+    if (form3) {
+        bob.signForm(*form3);
+        bob.executeForm(*form3);
+        delete form3;
+    }
 
-        // Executing forms
-        charlie.executeForm(shrub); // Should succeed
-        bob.executeForm(robot);     // Should succeed / fail 50%
-        alice.executeForm(pardon);  // Should succeed
-
-    } catch (std::exception& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
+    AForm* form4 = intern.makeForm("invalid form", "Nobody");
+    if (form4) {
+        delete form4;
     }
 
     return 0;
