@@ -2,22 +2,17 @@
 
 MateriaSource::MateriaSource()
 {
-    std::cout<< "MateriaSource Constructor\n";
-
     for(unsigned int i = 0; i < 4; i++)
-    {
-        // std::cout << i << std::endl;
         _materia_storage[i] = NULL;
-    }
 }
-MateriaSource::MateriaSource(const MateriaSource& other) : IMateriaSource(other){ *this = other; }
+MateriaSource::MateriaSource(const MateriaSource& other){ *this = other; }
 MateriaSource&   MateriaSource::operator=(const MateriaSource& other)
 {
-    (void)other;
-    // if ( this != &other)
-    // {
-    //     this->_type = other._type;
-    // }
+    if (this != &other)
+    {
+        for(unsigned int i = 0; i < 4; i++)
+            this->_materia_storage[i] = other._materia_storage[i];
+    }
     return *this;
 }
 
@@ -32,13 +27,13 @@ MateriaSource::~MateriaSource()
 
 void    MateriaSource::learnMateria(AMateria* m)
 {
-    // AMateria* _m = m->clone();
-
     for(unsigned int i = 0; i < 4; i++)
     {
         if (_materia_storage[i] == NULL)
+        {
             _materia_storage[i] = m;
-                return ;
+            return ;
+        }
     }
     return ;
 }
@@ -46,9 +41,8 @@ AMateria*   MateriaSource::createMateria(std::string const& type)
 {
     for(unsigned int i = 0; i < 4; i++)
     {
-        if (_materia_storage[i])
-            if (_materia_storage[i]->getType() == type)
-                return _materia_storage[i]->clone();
+        if (_materia_storage[i] && _materia_storage[i]->getType() == type)
+            return (_materia_storage[i]->clone());
     }
     return 0;
 }

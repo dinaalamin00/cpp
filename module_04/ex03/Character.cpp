@@ -1,36 +1,38 @@
 #include "Character.hpp"
+#include "ICharacter.hpp"
+#include "AMateria.hpp"
 
-Character::Character(): ICharacter(){}
+Character::Character(){}
 
-
-Character::Character(const std::string& name) : ICharacter(name)
+Character::Character(const std::string& name) : _name(name)
 {
-    std::cout<< "Character Constructor\n";
     for(unsigned int i = 0; i < 4; i++)
-    {
         _materias[i] = NULL;
-    }
 }
 
-Character::Character(const Character& other)  : ICharacter(other){}
+Character::Character(const Character& other)
+{
+    *this = other;
+}
 
 Character& Character::operator=(const Character& other)
 {
-    (void) other;
-    // if (this != &other)
-    // {
-    //     this->_name = other._name;
-    // }
+    if (this != &other)
+    {
+        this->_name = other._name;
+        for (unsigned int i = 0; i < 4; i++)
+            this->_materias[i] = other._materias[i];
+    }
     return *this;
 }
 
 Character::~Character()
 {
-    // for(unsigned int i = 0; i < 4; i++)
-    // {
-    //     if (_materias[i])
-    //         delete _materias[i];
-    // }
+    for(unsigned int i = 0; i < 4; i++)
+    {
+        if (_materias[i])
+            delete _materias[i];
+    }
 }
 
 std::string const& Character::getName() const{    return _name;}
@@ -46,6 +48,7 @@ void    Character::equip(AMateria* m)
             return ;
         }
     }
+    std::cout << getName() << ": CAN'T EQUIP MATERIA\n";
     return ;
 }
 void    Character::unequip(int idx)
@@ -59,7 +62,6 @@ void    Character::use(int idx, ICharacter& target)
 {
 
     if (idx < 4 && idx >= 0 && _materias[idx]) {
-        std::cout << _materias[idx]->getType() << std::endl;
         _materias[idx]->use(target); }
     return ;
 }

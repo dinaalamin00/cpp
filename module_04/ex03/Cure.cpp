@@ -1,11 +1,10 @@
 #include "Cure.hpp"
+#include "ICharacter.hpp"
 
-Cure::Cure() : AMateria("cure") {
-    std::cout<< "Cure Constructor\n";
-
-}
+Cure::Cure() : AMateria("cure") {}
 
 Cure::Cure(const Cure& other) : AMateria(other){}
+
 Cure&   Cure::operator=(const Cure& other)
 {
     if (this != &other)
@@ -14,11 +13,9 @@ Cure&   Cure::operator=(const Cure& other)
     }
     return *this;
 }
-Cure::~Cure()
-{
-    
-}
+Cure::~Cure() {}
 
+// ------------ Clone & Use ------------------------------------
 AMateria*    Cure::clone() const
 {
    return new Cure(); 

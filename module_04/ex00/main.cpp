@@ -6,43 +6,39 @@
 
 int main()
 {
-    std::cout << "Creating Animals:\n";
-    
-    const Animal* meta = new Animal();
+    const Animal* animal = new Animal();
     const Animal* dog = new Dog();
     const Animal* cat = new Cat();
 
-    std::cout << "\nGetting Types:\n";
-    std::cout << "Dog Type: " << dog->getType() << std::endl;
+    std::cout << "\n------------ Types ------------\n";
+    std::cout << "\nDog Type: " << dog->getType() << std::endl;
     std::cout << "Cat Type: " << cat->getType() << std::endl;
-    std::cout << "Meta Type: " << meta->getType() << std::endl;
+    std::cout << "Animal Type: " << animal->getType() << std::endl;
 
-    std::cout << "\nMaking Sounds:\n";
-    meta->makeSound();
+    std::cout << "\n------------ Sounds ------------\n";
+    animal->makeSound();
     dog->makeSound();  
     cat->makeSound();  
 
-    std::cout << "\nDeleting Animals:\n";
-    delete meta;
+    std::cout << "\n--------- Deleting Animals ----------\n";
+    delete animal;
     delete dog;
     delete cat;
 
-    std::cout << "\n\n-----------------------------------------------------\n\n";
-
-    std::cout << "Creating a WrongAnimal and a WrongCat:\n";
+    std::cout << "\n\n--------- WrongAnimal and a WrongCat --------------\n\n";
     
-    const WrongAnimal* wmeta = new WrongAnimal();
-    const WrongAnimal* i = new WrongCat();
+    const WrongAnimal* wanimal = new WrongAnimal();
+    const WrongAnimal* wcat = new WrongCat();
+    std::cout << "\n------------ wTypes ------------\n";
+    std::cout << "WrongAnimal type: " << wanimal->getType() << std::endl;
+    std::cout << "WrongCat type: " << wcat->getType() << std::endl;
 
-    std::cout << "WrongAnimal type: " << wmeta->getType() << std::endl;
-    std::cout << "WrongCat type: " << i->getType() << std::endl;
-
-    std::cout << "Making sounds:\n";
-    wmeta->makeSound(); // Expected: "Some generic wrong animal sound!"
-    i->makeSound();    // Expected: "Some generic wrong animal sound!" (Not "Meow?")
+    std::cout << "\n------------ WSounds ------------\n";
+    wanimal->makeSound();
+    wcat->makeSound();    // Expected: "Some generic wrong animal sound!" (Not "Meow?")
     
-    delete wmeta;
-    delete i;
+    delete wanimal;
+    delete wcat;
 
     return 0;
 }

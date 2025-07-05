@@ -2,30 +2,22 @@
 #include "Cat.hpp"
 
 
-Cat::Cat()
+Cat::Cat() : Animal("Cat")
 {
-    type = "Cat";
 	std::cout<< "Cat Default Constructor called" <<std::endl;
 }
-
-// Cat::Cat (const ) : type("Cat")
-// {
-// 	std::cout<< "Cat Default Constructor called" <<std::endl;
-// }
-
 
 Cat& Cat::operator=(const Cat& other)
 {
     std::cout<< "Cat Assignment Constructor called" <<std::endl;
     if (this != &other)
-        type = other.type;
+        _type = other._type;
     return *this;
 }
 
-Cat::Cat(const Cat& other) : Animal() 
+Cat::Cat(const Cat& other) : Animal(other)
 {
     std::cout<< "Cat Copy Constructor called" <<std::endl;
-	*this = other;
 }
 
 Cat::~Cat()

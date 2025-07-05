@@ -4,7 +4,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = interface
 
-SRCS =  AMateria.cpp   Cure.cpp IMateriaSource.cpp  MateriaSource.cpp Character.cpp  ICharacter.cpp  Ice.cpp             main.cpp
+SRCS =  main.cpp AMateria.cpp Cure.cpp IMateriaSource.cpp ICharacter.cpp MateriaSource.cpp Character.cpp Ice.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

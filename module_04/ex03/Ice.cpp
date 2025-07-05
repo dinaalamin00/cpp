@@ -1,13 +1,10 @@
 #include "Ice.hpp"
+#include "ICharacter.hpp"
 
-
-Ice::Ice() : AMateria("ice")
-{
-    std::cout<< "Ice Constructor\n";
-
-}
+Ice::Ice() : AMateria("ice") {}
 
 Ice::Ice(const Ice& other) : AMateria(other){}
+
 Ice&   Ice::operator=(const Ice& other)
 {
     if (this!= &other)
@@ -17,10 +14,7 @@ Ice&   Ice::operator=(const Ice& other)
     return *this;
 }
 
-Ice::~Ice()
-{
-
-}
+Ice::~Ice() {}
 
 AMateria*    Ice::clone() const
 {

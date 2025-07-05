@@ -1,11 +1,15 @@
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
 
-AMateria::AMateria(const std::string& type) : _type(type)
+AMateria::AMateria() {}
+
+AMateria::AMateria(const std::string& type) : _type(type) {}
+
+AMateria::AMateria(const AMateria& other)
 {
-    std::cout<< "AMateria Constructor\n";
+    *this = other;
 }
-AMateria::AMateria(const AMateria& other) { *this = other; }
+
 AMateria&   AMateria::operator=(const AMateria& other)
 {
     if ( this != &other)
@@ -14,13 +18,17 @@ AMateria&   AMateria::operator=(const AMateria& other)
     }
     return *this;
 }
-AMateria::AMateria(){}
 
 AMateria::~AMateria(){}
 
-std::string const& AMateria::getType() const { return _type; }
-// AMateria* AMateria::clone() const {}
-void AMateria::use(ICharacter& target)  { 
+// ------------ Getters ----------------
+
+std::string const& AMateria::getType() const
+{
+    return _type;
+}
+
+void AMateria::use(ICharacter& target)
+{
     (void)target;
-    std::cout<< "Not Used\n";
 }

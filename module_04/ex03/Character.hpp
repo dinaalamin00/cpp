@@ -5,13 +5,13 @@
 #include <string>
 #include <vector>
 #include "ICharacter.hpp"
-#include "AMateria.hpp"
+// #include "AMateria.hpp"
 
 
 class Character : public ICharacter
 {
     private:
-        // std::string _name;
+        std::string _name;
         AMateria*   _materias[4];
     public:
         Character();
