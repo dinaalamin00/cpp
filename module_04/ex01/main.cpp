@@ -5,25 +5,17 @@
 
 int main()
 {
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
-    std::cout << j->getType() << " makes sound: "; j->makeSound();
-    std::cout << i->getType() << " makes sound: "; i->makeSound();
-    delete j;
-    delete i;
+    Animal* animal[6];
+   
+    for (unsigned int i = 0; i < 3; i++)
+        animal[i] = new Dog();
+    for (unsigned int i = 0; i < 3; i++)
+        animal[i + 3] = new Cat();
 
-    std::cout << "\nCreating an array of Animals:\n";
-    Animal* animals[4];
-    for (int i = 0; i < 2; i++) animals[i] = new Dog();
-    for (int i = 2; i < 4; i++) animals[i] = new Cat();
-    
-    std::cout << "\nDeleting array of Animals:\n";
-    for (int i = 0; i < 4; i++) delete animals[i];
+    for (unsigned int i = 0; i < 6; i++)
+        delete animal[i];
 
-    std::cout << "\nTesting deep copy:\n";
-    Dog originalDog;
-    Dog copiedDog = originalDog;
-    Cat originalCat;
-    Cat copiedCat = originalCat;
+    Dog test;
+    Dog test2 = test;
     return 0;
 }
