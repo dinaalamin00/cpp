@@ -5,23 +5,22 @@
 #include <iostream>
 #include <string>
 
-class Animal
+class AAnimal
 {
-        protected:
-                std::string type;
+	protected:
+		std::string _type;
+	public:
+		AAnimal();
+		AAnimal(const std::string &type);
+		AAnimal(const AAnimal &other);
+		AAnimal&	operator=(const AAnimal &other);
+		virtual ~AAnimal();
 
-        public:
-                Animal();
-                Animal(const std::string &_type);
-                Animal(const Animal &other);
-                Animal&	operator=(const Animal &other);
-                virtual ~Animal();
-
-        std::string getType() const;
-        virtual void    makeSound() const;
-
+		std::string getType() const;
+		virtual void    makeSound() const = 0;
 };
 
 
 
 #endif
+ 

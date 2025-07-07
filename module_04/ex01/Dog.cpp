@@ -13,9 +13,9 @@ Dog& Dog::operator=(const Dog& other)
     if (this != &other)
     {
         Animal::operator=(other);
-        if (!brain)
-            brain = new Brain();
-        *brain = *other.brain;
+        if (brain)
+            delete brain;
+        brain = new Brain(*other.brain);
     }
     return *this;
 }
@@ -23,6 +23,7 @@ Dog& Dog::operator=(const Dog& other)
 Dog::Dog(const Dog& other) : Animal (other)
 {
     std::cout<< "Dog Copy Constructor called" <<std::endl;
+    brain = new Brain(*other.brain);
 }
 
 Dog::~Dog()
