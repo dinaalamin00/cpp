@@ -51,12 +51,19 @@ void    Character::equip(AMateria* m)
     std::cout << getName() << ": CAN'T EQUIP MATERIA\n";
     return ;
 }
+
+AMateria*    const& Character::getMateria(unsigned int idx) const
+{
+    return _materias[idx];
+}
+
 void    Character::unequip(int idx)
 {
     if (idx < 4 && idx >= 0 && _materias[idx])
         _materias[idx] = NULL;
     return ;
 }
+
 
 void    Character::use(int idx, ICharacter& target)
 {

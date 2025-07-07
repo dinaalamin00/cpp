@@ -63,7 +63,9 @@ void inventoryTests()
     me->use(4, *enemy);
 
     std::cout << "\nUnequipping slot 1 (Cure):" << std::endl;
+    AMateria* dropped = me->getMateria(1);
     me->unequip(1);
+    delete dropped;
 
     std::cout << "\nTrying to use unequipped slot 1 (should do nothing):" << std::endl;
     me->use(1, *enemy);
@@ -82,26 +84,21 @@ void deepCopyTests()
 {
     std::cout << "------- DEEP COPY TESTS -------" << std::endl;
 
-    ICharacter* original = new Character("original");
+     ICharacter* original = new Character("original");
     original->equip(new Ice());
     original->equip(new Cure());
-    
-    
-    ICharacter* bob = new Character("bob");
-    std::cout << "\nCreating copy using copy constructor:\n";
-    ICharacter* copy_1(original);
 
-    std::cout << "\nCreating copy using assignment operator:\n";
-    Character copy_2("Temp");
-    copy_2 = *original;
+
+    ICharacter* bob = new Character("bob");
 
     std::cout << "Original Character uses Materias:" << std::endl;
     original->use(0, *bob); 
     original->use(1, *bob); 
 
     std::cout << "Copy Character uses Materias:" << std::endl;
-
+    AMateria* dropped = original->getMateria(0);
     original->unequip(0);
+    delete dropped;
     original->equip(new Ice());
 
     std::cout << "After modification - Original uses Materias:" << std::endl;
@@ -111,12 +108,12 @@ void deepCopyTests()
 
     delete bob;
     delete original;
-
     std::cout << "--------------------------------------\n" << std::endl;
 }
 
-void sourceTests() {
-    std::cout << "===== MATERIA SOURCE TESTS =====" << std::endl;
+void sourceTests()
+{
+    std::cout << "------- MATERIA SOURCE TESTS -------" << std::endl;
 
     IMateriaSource* src = new MateriaSource();
 
@@ -140,93 +137,15 @@ void sourceTests() {
     delete cure1;
     delete src;
 
-    std::cout << "===== END OF MATERIA SOURCE TESTS =====\n" << std::endl;
+    std::cout << "------------------------------------------\n" << std::endl;
 }
 
-void randomTests()
-{
-    std::cout << "===== randomTests TESTS =====" << std::endl;
-
-	AMateria *cure = new Cure();
-	std::cout << cure->getType() << "\n\n\n";
-
-	AMateria *ice = new Ice();
-	std::cout << ice->getType() << "\n\n\n";
-
-	
-	AMateria *cureClone = cure->clone();
-	std::cout << cureClone->getType() << "\n";
-	delete cureClone;
-	std::cout << "\n\n";
-
-	
-	AMateria *iceClone = ice->clone();
-	std::cout << iceClone->getType() << "\n";
-	delete iceClone;
-	std::cout << "\n\n";
-	
-	{
-		Cure A;
-		std::cout << A.getType();
-		std::cout << "\n\n";
-		
-		Cure C(A);
-		std::cout << C.getType() + "\n";
-	}
-		std::cout << "\n\n";
-	{
-		Ice B;
-		std::cout << B.getType();
-		std::cout << "\n\n";
-		
-		Ice D(B);
-		std::cout << D.getType() + "\n";
-	}
-		std::cout << "\n\n";
-		
-	delete cure;
-	delete ice;
-
-	ICharacter *x = new Character("x");
-	std::cout << x->getName() << "\n";
-	x->equip(new Cure());
-	x->unequip(0);
-	x->unequip(1);
-	x->equip(new Ice());
-	
-	x->use(0, *x);
-	x->use(1, *x);
-	
-	std::cout << "\n\n";
-
-
-	Character *temp;
-	Character *y = new Character("y");
-	std::cout << y->getName() << "\n";
-	y->equip(new Cure());
-	y->use(0, *y);
-	y->use(1, *y);
-	std::cout << "\n\n";
-
-	temp = static_cast<Character *>(x);
-	std::cout << "===========================\n";
-	*y = *temp;
-
-	y->use(0, *y);
-	y->use(1, *y);
-
-	delete y;
-	delete x;
-
-    std::cout << "===== END OF randomTests TESTS =====\n" << std::endl;
-}
 
 int main() {
-    // basicTests();
-    // inventoryTests();
+    basicTests(); // subject main()
+    inventoryTests();
     deepCopyTests();
-    // sourceTests();
-	// randomTests();
+    sourceTests();
 
     return 0;
 }

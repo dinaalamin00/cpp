@@ -17,8 +17,8 @@ int main()
     std::cout << "Cat type: " << cat->getType() << std::endl;
 
     std::cout << "\n--- Sounds ---" << std::endl;
-    dog->makeSound();    // Woof!!!!
-    cat->makeSound();    // Meow!!!
+    dog->makeSound();
+    cat->makeSound();
 
     std::cout << "\n--- Destruction ---" << std::endl;
     delete dog;

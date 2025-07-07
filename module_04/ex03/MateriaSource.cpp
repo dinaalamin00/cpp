@@ -35,6 +35,7 @@ void    MateriaSource::learnMateria(AMateria* m)
             return ;
         }
     }
+    delete m;
     return ;
 }
 AMateria*   MateriaSource::createMateria(std::string const& type)
