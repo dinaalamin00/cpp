@@ -4,10 +4,12 @@
 
 Character::Character(){}
 
-Character::Character(const std::string& name) : _name(name)
+Character::Character(const std::string& name) : _name(name),  _floorIdx(0)
 {
     for(unsigned int i = 0; i < 4; i++)
         _materias[i] = NULL;
+    for(unsigned int i = 0; i < 100; i++)
+        _floor[i] = NULL;
 }
 
 Character::Character(const Character& other)
@@ -33,6 +35,10 @@ Character::~Character()
         if (_materias[i])
             delete _materias[i];
     }
+    for (unsigned int i = 0; i < _floorIdx; ++i)
+        if (_floor[i])
+        delete _floor[i];
+
 }
 
 std::string const& Character::getName() const{    return _name;}
@@ -60,7 +66,17 @@ AMateria*    const& Character::getMateria(unsigned int idx) const
 void    Character::unequip(int idx)
 {
     if (idx < 4 && idx >= 0 && _materias[idx])
-        _materias[idx] = NULL;
+    {
+        if (_floorIdx < 100)
+        {
+            _floor[_floorIdx++] = _materias[idx];
+            _materias[idx] = NULL;
+        }
+        else
+        {
+            std::cout << "Floor is full! Cannot unequip." << std::endl;
+        }
+    }
     return ;
 }
 

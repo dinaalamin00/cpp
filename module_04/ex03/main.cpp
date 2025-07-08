@@ -63,9 +63,7 @@ void inventoryTests()
     me->use(4, *enemy);
 
     std::cout << "\nUnequipping slot 1 (Cure):" << std::endl;
-    AMateria* dropped = me->getMateria(1);
     me->unequip(1);
-    delete dropped;
 
     std::cout << "\nTrying to use unequipped slot 1 (should do nothing):" << std::endl;
     me->use(1, *enemy);
@@ -96,9 +94,7 @@ void deepCopyTests()
     original->use(1, *bob); 
 
     std::cout << "Copy Character uses Materias:" << std::endl;
-    AMateria* dropped = original->getMateria(0);
     original->unequip(0);
-    delete dropped;
     original->equip(new Ice());
 
     std::cout << "After modification - Original uses Materias:" << std::endl;

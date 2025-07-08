@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include "ICharacter.hpp"
-// #include "AMateria.hpp"
 
 
 class Character : public ICharacter
@@ -13,6 +12,8 @@ class Character : public ICharacter
     private:
         std::string _name;
         AMateria*   _materias[4];
+        AMateria* _floor[100];
+        unsigned int _floorIdx;
     public:
         Character();
         Character(const std::string& name);
