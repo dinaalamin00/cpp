@@ -63,8 +63,7 @@ void    AForm::beSigned(const Bureaucrat &B)
 void    AForm::canExecute(Bureaucrat const& B) const
 {
     if (!_signed)
-        throw make fclean
-        ();
+        throw NotSignedException();
     if (B.getGrade() > _grade_toExec)
         throw GradeTooLowException();
 }

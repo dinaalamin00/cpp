@@ -50,5 +50,4 @@ void    Form::beSigned(const Bureaucrat &B)
     if (B.getGrade() > this->getGradeSign())
         throw GradeTooLowException();
     this->_signed = true;
-
 }

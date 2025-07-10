@@ -19,25 +19,25 @@ AForm   *Intern::makeForm(const std::string& fName, const std::string& target)
 
     for(int i=0; i<3 && formNames[i] != fName; i++)
     
-    switch(i)
-    {
-        case 0:
+        switch(i)
         {
-            std::cout << "Intern creates " << fName << std::endl;
-            return (new ShrubberyCreationForm(target));
+            case 0:
+            {
+                std::cout << "Intern creates " << fName << std::endl;
+                return (new ShrubberyCreationForm(target));
+            }
+            case 1:
+            {
+                std::cout << "Intern creates " << fName << std::endl;
+                return (new RobotomyRequestForm(target));
+            }
+            case 2:
+            {
+                std::cout << "Intern creates " << fName << std::endl;
+                return (new PresidentialPardonForm(target));
+            }
+            default :
+                std::cout << "Form \"" << fName << "\" not found." << std::endl;
         }
-        case 1:
-        {
-            std::cout << "Intern creates " << fName << std::endl;
-            return (new RobotomyRequestForm(target));
-        }
-        case 2:
-        {
-            std::cout << "Intern creates " << fName << std::endl;
-            return (new PresidentialPardonForm(target));
-        }
-        default :
-            std::cout << "Form \"" << fName << "\" not found." << std::endl;
-    }
     return NULL;
 }
