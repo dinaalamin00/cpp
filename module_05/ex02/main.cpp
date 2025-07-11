@@ -7,9 +7,9 @@
 
 int main() {
     try {
-        Bureaucrat alice("Alice", 1);       // Top-grade bureaucrat
-        Bureaucrat bob("Bob", 50);          // Mid-grade bureaucrat
-        Bureaucrat charlie("Charlie", 140); // Low-grade bureaucrat
+        Bureaucrat alice("Alice", 6);     
+        Bureaucrat bob("Bob", 5);         
+        Bureaucrat charlie("Charlie", 0); 
 
         ShrubberyCreationForm shrub("Home");
         RobotomyRequestForm robot("Marvin");

@@ -1,13 +1,15 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() {}
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137) ,_target("default") {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("ShrubberyCreationForm", 145, 137) ,_target(target) {}
-
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm("ShrubberyCreationForm", 145, 137) ,_target(other._target) 
+{
+}
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
     (void)other;
@@ -19,7 +21,7 @@ void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
     AForm::canExecute(executor);
 
-    std::ofstream OutFile((executor.getName() + "_shrubbery ").c_str());  // change std::string to const char* 
+    std::ofstream OutFile((executor.getName() + "_shrubbery ").c_str());
 
     OutFile << "               ,@@@@@@@,\n"
     << "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n"

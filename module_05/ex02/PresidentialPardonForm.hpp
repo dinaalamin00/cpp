@@ -8,7 +8,6 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-// class AForm;
 class PresidentialPardonForm : public AForm
 {
     private:

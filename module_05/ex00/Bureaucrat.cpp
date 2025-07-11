@@ -21,11 +21,10 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other)
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
-    (void)other;
-    // if (this != &other)
-    // {
-    //     _grade = other._grade;
-    // }
+    if (this != &other)
+    {
+        _grade = other._grade;
+    }
     return *this;
 }
 
@@ -49,17 +48,15 @@ std::ostream& operator<<(std::ostream &outputStream, const Bureaucrat& Obj)
 
 void Bureaucrat::incrementGrade()
 {
-    _grade--;
-    if (_grade < 1)
+    if (_grade <= 1)
         throw GradeTooHighException();
-
-
+    _grade--;
 }
 void Bureaucrat::decrementGrade()
 {
-    _grade++;
-    if (_grade > 150)
+    if (_grade >= 150)
         throw GradeTooLowException();
+    _grade++;
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()

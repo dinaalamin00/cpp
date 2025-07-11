@@ -13,10 +13,10 @@ class Bureaucrat;
 class Form
 {
     private:
-        const std::string _name;
+        const std::string   _name;
         bool                _signed;
         const int           _grade_toSign;
-        const int       _grade_toExec;
+        const int           _grade_toExec;
     public:
         Form();
         Form(const std::string &name, int grade_sign, int grade_exec);
@@ -33,11 +33,11 @@ class Form
             const char* what() const throw();
         };
 
-        //getters
+    //---------------- getters --------------------
         const std::string&	getName() const;
-        bool	getSign() const;
-        int	getGradeSign() const;
-        int	getGradeExec() const;
+        bool	            getSign() const;
+        int	                getGradeSign() const;
+        int	                getGradeExec() const;
 
         void    beSigned(const Bureaucrat &B);
 };

@@ -12,7 +12,14 @@ Form::Form(const std::string &name, const int grade_sign, const int grade_exec) 
         throw GradeTooLowException();
 }
 
-Form::Form(const Form& other) : _name(other._name), _grade_toSign(other._grade_toSign), _grade_toExec(other._grade_toExec){}
+Form::Form(const Form& other) : _name(other._name), _grade_toSign(other._grade_toSign), _grade_toExec(other._grade_toExec)
+{
+    if (_grade_toSign < 1 || _grade_toExec < 1)
+        throw GradeTooHighException();
+    
+    if (_grade_toSign > 150 || _grade_toExec > 150)
+        throw GradeTooLowException();
+}
 
 Form& Form::operator=(const Form& other)
 {
