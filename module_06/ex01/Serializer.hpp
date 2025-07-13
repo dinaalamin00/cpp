@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-// #include <cstdint>
 #include <stdint.h>
 #include "Data.hpp"
 
@@ -15,6 +14,7 @@ class Serializer
     public:
         Serializer&	operator=(const Serializer &other);
         ~Serializer();
+    
         static uintptr_t serialize(Data* ptr);
         static Data* deserialize(uintptr_t raw);
 };

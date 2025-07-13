@@ -10,7 +10,9 @@ class Base
     private:
         /* data */
     public:
-        Base(/* args */);
+        Base();
+        Base(const Base& other);
+        Base&   operator =(const Base& other);
         virtual ~Base();
 };
     

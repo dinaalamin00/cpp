@@ -3,24 +3,33 @@
 #include "Serializer.hpp"
 #include "Data.hpp"
 
+
 int main()
 {
+    Data* original = new Data;
+    original->key = "Test";
+    original->value = 42;
 
-    Data    data;
-    Data    *ptr;
-    uintptr_t      serial;
+    std::cout << "Original pointer: " << original << '\n';
+    std::cout << "Original data: " << original->value << ", " << original->key << '\n';
 
-    data.value = 3;
-    data.key = "KEY";
-    ptr = NULL;
+    uintptr_t raw = Serializer::serialize(original);
 
-    std::cout<< "data address:" << &data<<std::endl;
-    serial = Serializer::serialize(&data);
-    std::cout<< "serialied:" << serial<<std::endl;
-    ptr = Serializer::deserialize(serial);
-    std::cout<< "-------------deserialied------------\naddress: " << ptr << "\nkey: "
-        << ptr->key << " -- value: " << ptr->value<<std::endl;
+    Data* restored = Serializer::deserialize(raw);
+
+    std::cout << "Restored pointer: " << restored << '\n';
+    if (restored)
+        std::cout << "Restored data: " << restored->value << ", " << restored->key << '\n';
+    else
+        std::cout << "Restored is a null pointer.\n";
     
+    if (original == restored)
+        std::cout << "---- Success ----\n";
+    else
+        std::cout << "---- Failure ----\n";
+
+    delete original;
     return 0;
 }
+
 
