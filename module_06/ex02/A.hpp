@@ -5,11 +5,7 @@
 
 class A : public Base
 {
-    private:
-        /* data */
-    public:
-        A(/* args */);
-        ~A();
+    
 };
 
 

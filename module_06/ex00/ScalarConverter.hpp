@@ -4,10 +4,10 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <cstdlib>      // strtod, strtof, strtol
-#include <climits>      // INT_MAX, INT_MIN
-#include <cfloat>       // FLT_MAX
-#include <cctype>       // isprint
+#include <cstdlib>  
+#include <climits>      
+#include <cfloat>      
+#include <cctype>   
 #include <limits>
 #include "handlePrint.hpp"
 

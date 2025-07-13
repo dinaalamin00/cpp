@@ -4,21 +4,17 @@
 
 #include <iostream>
 #include <string>
-
+#include <cstdlib>
+#include <ctime>
 class Base
 {
-    private:
-        /* data */
     public:
-        Base();
-        Base(const Base& other);
-        Base&   operator =(const Base& other);
         virtual ~Base();
 };
     
-Base * generate(void);
-void identify(Base* p);
-void identify(Base& p);
+Base*   generate(void);
+void    identify(Base* p);
+void    identify(Base& p);
 
 
 #endif

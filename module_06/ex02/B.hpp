@@ -1,23 +1,12 @@
-#ifndef A_HPP
-# define A_HPP
+#ifndef B_HPP
+# define B_HPP
 
 #include "Base.hpp"
 
-class A : public Base
+class B : public Base
 {
-    private:
-        /* data */
-    public:
-        A(/* args */);
-        ~A();
+
 };
 
-A::A(/* args */)
-{
-}
-
-B::~B()
-{
-}
 
 #endif

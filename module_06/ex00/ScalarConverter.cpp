@@ -6,7 +6,6 @@ ScalarConverter::ScalarConverter(const ScalarConverter&) {}
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter&) { return *this; }
 ScalarConverter::~ScalarConverter() {}
 
-
 bool ScalarConverter::isChar(std::string const& str)
 {
     return (str.length() == 1 && !std::isdigit(str[0]) && std::isprint(str[0]));
