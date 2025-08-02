@@ -73,6 +73,7 @@
 		"concepts": "cpp",
 		"numbers": "cpp",
 		"list": "cpp",
-		"stack": "cpp"
+		"stack": "cpp",
+		"*.tpp": "cpp"
 	}
 }

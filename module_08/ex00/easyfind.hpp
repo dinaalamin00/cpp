@@ -7,12 +7,6 @@
 #include <algorithm>
 
 
-// class notFound : public std::exception
-// {
-//     public:
-//         const char* what() const throw();
-// };
-
 template <typename T>
 typename T::const_iterator    easyfind(const T& container, int value)
 {

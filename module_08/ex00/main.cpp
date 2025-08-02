@@ -19,7 +19,7 @@ int main()
     }
     catch (const std::exception& e) 
     {
-        std::cerr << "Exception: " << e.what() << std::endl;
+        std::cerr << "**Exception: " << e.what() << std::endl;
     }
 
     try 
@@ -28,9 +28,10 @@ int main()
     }
     catch (const std::exception& e) 
     {
-        std::cerr << "Exception: " << e.what() << std::endl;
+        std::cerr << "**Exception: " << e.what() << std::endl;
     }
 
+    std::cout << "\n-----------------------\n";
     std::cout << "\nTesting with std::list:\n";
     std::list<int> lst;
     lst.push_back(10);
@@ -44,7 +45,7 @@ int main()
     }
     catch (const std::exception& e) 
     {
-        std::cerr << "Exception: " << e.what() << std::endl;
+        std::cerr << "**Exception: " << e.what() << std::endl;
     }
 
     try 
@@ -53,7 +54,7 @@ int main()
     }
     catch (const std::exception& e) 
     {
-        std::cerr << "Exception: " << e.what() << std::endl;
+        std::cerr << "**Exception: " << e.what() << std::endl;
     }
 
     return 0;
