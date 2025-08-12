@@ -4,7 +4,7 @@ CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 NAME = MutantStack
 
-SRCS =  main.cpp
+SRCS =  main.cpp PmergeMe.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
