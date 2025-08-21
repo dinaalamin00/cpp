@@ -2,7 +2,7 @@ CXX = c++
 
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror 
 
-NAME = MutantStack
+NAME = PmergeMe
 
 SRCS =  main.cpp PmergeMe.cpp
 OBJS = $(SRCS:.cpp=.o)
