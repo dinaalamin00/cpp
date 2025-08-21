@@ -4,6 +4,11 @@ PmergeMe::PmergeMe(/* args */)
 {
 }
 
+PmergeMe::PmergeMe(int argc, char **argv)
+{
+	parseInput(argc, argv);
+}
+
 PmergeMe::PmergeMe(PmergeMe const& other)
 {
     *this = other;
@@ -47,34 +52,45 @@ bool PmergeMe::isAllDigits(const std::string& s) const
     return true;
 }
 
-void	PmergeMe::parsePositiveUInt(const std::string& s)
+void	PmergeMe::parseInput(int argc, char **argv)
 {
-	std::string token = trim(s);
-	if (token.empty())
-		throw	std::runtime_error("ERROR: Empty Token!!");
-	if (!isAllDigits(token))
-		throw	std::runtime_error("ERROR: Not a  Number!!");
-    char* endptr;
-    errno = 0;
-    long result;
-    result = std::strtol(token.c_str(), &endptr, 10);
-    if (errno == ERANGE)
-        throw std::runtime_error("ERROR: Overflow!!");
-    if (*endptr != '\0') 
-        throw std::runtime_error("ERROR: Junk At End!!");
-    if (result < 0)
-        throw std::runtime_error("ERROR: Negative Number!!");
-    if (result > INT_MAX)
-		throw std::runtime_error("ERROR: Too Large For int!!");
-	if (std::find(_vec.begin(), _vec.end(),(int)result) != _vec.end())
-		throw std::runtime_error("ERROR: Duplicate!!");
+	for(int i=1; i < argc; i++)
+	{
+		std::string token = trim(argv[i]);
+		if (token.empty())
+			throw	std::runtime_error("ERROR: Empty Token!!");
+		if (!isAllDigits(token))
+			throw	std::runtime_error("ERROR: Not a  Number!!");
+		char* endptr;
+		errno = 0;
+		long result;
+		result = std::strtol(token.c_str(), &endptr, 10);
+		if (errno == ERANGE)
+			throw std::runtime_error("ERROR: Overflow!!");
+		if (*endptr != '\0') 
+			throw std::runtime_error("ERROR: Junk At End!!");
+		if (result < 0)
+			throw std::runtime_error("ERROR: Negative Number!!");
+		if (result > INT_MAX)
+			throw std::runtime_error("ERROR: Too Large For int!!");
+		if (std::find(_vec.begin(), _vec.end(),(int)result) != _vec.end())
+			throw std::runtime_error("ERROR: Duplicate!!");
 
-
-	// out = (int) result;
-	_vec.push_back((int)result);
-	_lst.push_back((int)result);
+		_vec.push_back((int)result);
+		_lst.push_back((int)result);
+	}
+	
 }
 
+std::vector<int> PmergeMe::generateJacobsthal(int size) const
+{
+    std::vector<int> jacob;
+    jacob.push_back(0);
+    if (size > 1) jacob.push_back(1);
+    for (int i = 2; jacob.back() < size; ++i)
+        jacob.push_back(jacob[i - 1] + 2 * jacob[i - 2]);
+    return jacob;
+}
 
 std::vector<int> PmergeMe::insertToSortedVec(std::vector<int> sorted, int value) const
 {
@@ -89,28 +105,32 @@ std::vector<int>    PmergeMe::mergeInsertionSortVector(std::vector<int> v) const
 	if (v.size() <= 1)
 	return v;
 	// Step 1: Form pairs and order them
+	std::vector<int>  mainChain;
+	std::vector<int>  pend;
 	for (unsigned int i=0; i<v.size()-1; i+=2)
 	{
-		if (v[i] > v[i+1])
-		std::swap(v[i], v[i+1]);
+		int a = v[i];
+        int b = v[i + 1];
+        if (a > b)
+			std::swap(a, b);
+        mainChain.push_back(a);
+        pend.push_back(b);
 	}
-	// Step 2: Collect smaller elements from each pair
-	std::vector<int>  smalls;
-	for(unsigned int i=0; i < v.size()-1; i+=2)
-	smalls.push_back(v[i]);
-	// Step 3: Recursively sort small elements
-	smalls = mergeInsertionSortVector(smalls);
-	// Step 4: Insert larger elements
-	std::vector<int>  large;
-	for(unsigned int i=1; i < v.size(); i+=2)
-	large.push_back(v[i]);
-	for (unsigned int i=0; i<large.size(); i++)
-	smalls = insertToSortedVec(smalls, large[i]);
-	// Step 5: Handle odd element if original vector size is odd
 	if (v.size() % 2 != 0)
-	smalls = insertToSortedVec(smalls, v[v.size() - 1]);
-	
-	return smalls;
+		pend.push_back(v.back());
+	mainChain = mergeInsertionSortVector(mainChain);
+
+	std::vector<int> jacob = generateJacobsthal(pend.size());
+
+    for (size_t i = 0; i < pend.size(); ++i)
+	{
+        size_t idx = (i < jacob.size()) ? jacob[i] : i;
+        if (idx >= pend.size())
+			break ;
+        std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), pend[idx]);
+        mainChain.insert(pos, pend[idx]);
+    }
+	return mainChain;
 }
 
 void	PmergeMe::insertToSortedList(std::list<int> &sorted, int value) const
@@ -126,56 +146,45 @@ void	PmergeMe::insertToSortedList(std::list<int> &sorted, int value) const
 
 std::list<int> PmergeMe::mergeInsertionSortList(std::list<int> lst) const
 {
-	// Already sorted
 	if (lst.size() <= 1)
 		return lst;
-// Step 1: Form pairs and order them
+
+	std::list<int>  mainChain;
+	std::list<int>  pend;
+
 	std::list<int>::iterator	it = lst.begin();
 	while (it != lst.end())
 	{
-		std::list<int>::iterator	next = it;
-		++next;
-		if (next == lst.end())  // Odd element left alone
-			break ;
-		if (*it > *next)
-			std::iter_swap(it, next);
-		std::advance(it, 2);
-	}
-// Step 2: Collect smaller elements from each pair
-	std::list<int>  smalls;
-	it = lst.begin();
-	while (it != lst.end())
-	{
-		std::list<int>::iterator	next = it;
-		++next;
-		if (next == lst.end())
-			break ;
-		smalls.push_back(*it);
-		std::advance(it, 2);
-	}
-	// Step 3: Recursively sort small elements
-	smalls = mergeInsertionSortList(smalls);
-	// Step 4: Insert larger elements
-	std::list<int>  large;
-	it = lst.begin();
-	// ++it;
-	while (it != lst.end())
-	{
-		std::list<int>::iterator next = it;
-    	++next;
-		if (next == lst.end()) // last element not part of a pair
-        	break;
-		large.push_back(*next);
-		std::advance(it, 2);
+		int a = *it++;
+        if (it != lst.end())
+		{
+            int b = *it++;
+            if (a > b) std::swap(a, b);
+            mainChain.push_back(a);
+            pend.push_back(b);
+        }
+		else
+            pend.push_back(a);
 	}
 
-	for (std::list<int>::iterator lit = large.begin(); lit != large.end(); ++lit)
-		insertToSortedList(smalls, *lit);
-// Step 5: Handle odd element if original vector size is odd
-	if (lst.size() % 2 != 0)
-		insertToSortedList(smalls, lst.back());
+	mainChain = mergeInsertionSortList(mainChain);
+	std::vector<int> pendVec(pend.begin(), pend.end());
+    std::vector<int> jacob = generateJacobsthal(pendVec.size());
 
-	return smalls;
+    for (size_t i = 0; i < pendVec.size(); ++i)
+	{
+        size_t idx = (i < jacob.size()) ? jacob[i] : i;
+        if (idx >= pendVec.size())
+			idx = pendVec.size() - 1;
+
+        std::list<int>::iterator pos = mainChain.begin();
+        for (; pos != mainChain.end(); ++pos)
+            if (*pos >= pendVec[idx])
+				break;
+        mainChain.insert(pos, pendVec[idx]);
+    }
+
+	return mainChain;
 }
 // --- Getters -----
  std::vector<int>    PmergeMe::getVec() const 

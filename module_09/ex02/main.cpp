@@ -12,10 +12,7 @@ int main(int argc, char **argv)
 
     try
     {
-        PmergeMe sorter;
-
-        for (int i = 1; i < argc; ++i)
-            sorter.parsePositiveUInt(argv[i]);
+        PmergeMe sorter(argc, argv);
 
         std::cout << "Before: ";
         std::vector<int> vec = sorter.getVec();
@@ -27,7 +24,7 @@ int main(int argc, char **argv)
         std::vector<int> sortedVec = sorter.mergeInsertionSortVector(sorter.getVec());
         clock_t vend = clock();
 
-        std::cout << "After: ";
+        std::cout << "Vector After: ";
         for (size_t i = 0; i < sortedVec.size(); ++i)
             std::cout << sortedVec[i] << " ";
         std::cout << std::endl;
@@ -37,15 +34,14 @@ int main(int argc, char **argv)
                   << " elements with std::vector : "
                   << vduration << " us" << std::endl;
 
-        // --------------------- List ----------------------------
 
-    
+        // --------------------- List ----------------------------
 
         clock_t lstart = clock();
         std::list<int> sortedLst = sorter.mergeInsertionSortList(sorter.getLst());
         clock_t lend = clock();
 
-        std::cout << " List After: ";
+        std::cout << "List After: ";
         std::list<int>::iterator it = sortedLst.begin();
         for (; it != sortedLst.end(); ++it)
             std::cout << *it << " ";

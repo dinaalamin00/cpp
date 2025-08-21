@@ -22,17 +22,19 @@ class PmergeMe
         bool                isAllDigits(const std::string& s) const;
         std::vector<int>    insertToSortedVec(std::vector<int> sorted, int value) const;
         void                insertToSortedList(std::list<int> &sorted, int value) const;
+        std::vector<int>    generateJacobsthal(int size) const;
+        void	            parseInput(int argc, char **argv);
     public:
-        PmergeMe(/* args */);
+        PmergeMe();
+        PmergeMe(int argc, char **argv);
         PmergeMe(PmergeMe const& other);
         PmergeMe&   operator=(PmergeMe const& other);
         ~PmergeMe();
-        void	            parsePositiveUInt(const std::string& s);
         std::vector<int>    mergeInsertionSortVector(std::vector<int> v) const;
         std::list<int>      mergeInsertionSortList(std::list<int> lst) const;
 // --- Getters ----
         std::vector<int>    getVec() const ;
-        std::list<int>    getLst() const ;
+        std::list<int>      getLst() const ;
 };
 
 #endif 
