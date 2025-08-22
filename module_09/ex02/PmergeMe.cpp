@@ -19,7 +19,7 @@ PmergeMe&   PmergeMe::operator=(PmergeMe const& other)
 	if (this != &other)
     {
         this->_vec = other._vec;
-        // this->_list = other._list; // if using list later
+        this->_lst = other._lst;
     }
     return *this;
 }
@@ -29,7 +29,6 @@ PmergeMe::~PmergeMe()
 }
 
 // ------------ helper functions -------------
-
 
 std::string PmergeMe::trim(const std::string &s) const
 {
@@ -41,6 +40,9 @@ std::string PmergeMe::trim(const std::string &s) const
         --end;
     return s.substr(start, end - start);
 }
+
+
+
 
 bool PmergeMe::isAllDigits(const std::string& s) const
 {
@@ -82,22 +84,37 @@ void	PmergeMe::parseInput(int argc, char **argv)
 	
 }
 
-std::vector<int> PmergeMe::generateJacobsthal(int size) const
+
+template <typename Container>
+Container PmergeMe::generateInsertionOrder(int lastNum) const
 {
-    std::vector<int> jacob;
-    jacob.push_back(0);
-    if (size > 1) jacob.push_back(1);
-    for (int i = 2; jacob.back() < size; ++i)
-        jacob.push_back(jacob[i - 1] + 2 * jacob[i - 2]);
-    return jacob;
+    Container insertionOrder;
+
+    if (lastNum <= 0)
+		return insertionOrder;
+
+    insertionOrder.push_back(0);
+    if(lastNum > 1)
+		insertionOrder.push_back(1);
+	int first = 1;
+    int second = 3;
+    while (true)
+    {
+        int next = second + 2 * first;
+        if (next >= lastNum)
+            break;
+        insertionOrder.push_back(next);
+        first = second;
+        second = next;
+    }
+	for(int j = 0; j < lastNum; ++j)
+	{
+        if (std::find(insertionOrder.begin(), insertionOrder.end(), j) == insertionOrder.end())
+            insertionOrder.push_back(j);
+    }
+    return insertionOrder;
 }
 
-std::vector<int> PmergeMe::insertToSortedVec(std::vector<int> sorted, int value) const
-{
-    std::vector<int>::iterator it = std::lower_bound(sorted.begin(), sorted.end(), value);
-    sorted.insert(it, value);
-    return sorted;
-}
 
 std::vector<int>    PmergeMe::mergeInsertionSortVector(std::vector<int> v) const
 {
@@ -118,23 +135,24 @@ std::vector<int>    PmergeMe::mergeInsertionSortVector(std::vector<int> v) const
 	}
 	if (v.size() % 2 != 0)
 		pend.push_back(v.back());
+
 	mainChain = mergeInsertionSortVector(mainChain);
 
-	std::vector<int> jacob = generateJacobsthal(pend.size());
+	std::vector<int> order = generateInsertionOrder<std::vector<int> >(pend.size());
 
     for (size_t i = 0; i < pend.size(); ++i)
 	{
-        size_t idx = (i < jacob.size()) ? jacob[i] : i;
-        if (idx >= pend.size())
-			break ;
-        std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), pend[idx]);
-        mainChain.insert(pos, pend[idx]);
+        int val = pend[ order[i] ];
+
+		std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), val);
+		mainChain.insert(pos, val);
     }
 	return mainChain;
 }
 
 void	PmergeMe::insertToSortedList(std::list<int> &sorted, int value) const
 {
+
 	std::list<int>::iterator	it = sorted.begin();
 	for (; it != sorted.end(); ++it)
 	{
@@ -168,20 +186,19 @@ std::list<int> PmergeMe::mergeInsertionSortList(std::list<int> lst) const
 	}
 
 	mainChain = mergeInsertionSortList(mainChain);
-	std::vector<int> pendVec(pend.begin(), pend.end());
-    std::vector<int> jacob = generateJacobsthal(pendVec.size());
-
-    for (size_t i = 0; i < pendVec.size(); ++i)
+    std::list<int> order = generateInsertionOrder<std::list<int> >(pend.size());
+	
+    for (size_t i = 0; i < order.size(); ++i)
 	{
-        size_t idx = (i < jacob.size()) ? jacob[i] : i;
-        if (idx >= pendVec.size())
-			idx = pendVec.size() - 1;
-
-        std::list<int>::iterator pos = mainChain.begin();
-        for (; pos != mainChain.end(); ++pos)
-            if (*pos >= pendVec[idx])
-				break;
-        mainChain.insert(pos, pendVec[idx]);
+		
+		std::list<int>::iterator lit = pend.begin();
+		std::list<int>::iterator oit = order.begin();
+		std::advance(oit, i);
+		size_t	idx = *oit;
+		std::advance(lit, idx);
+		int val = *lit;
+        std::list<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), val);
+        mainChain.insert(pos, val);
     }
 
 	return mainChain;

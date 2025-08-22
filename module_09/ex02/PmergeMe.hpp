@@ -22,7 +22,8 @@ class PmergeMe
         bool                isAllDigits(const std::string& s) const;
         std::vector<int>    insertToSortedVec(std::vector<int> sorted, int value) const;
         void                insertToSortedList(std::list<int> &sorted, int value) const;
-        std::vector<int>    generateJacobsthal(int size) const;
+        template <typename Container>
+        Container   generateInsertionOrder(int lastNum) const;
         void	            parseInput(int argc, char **argv);
     public:
         PmergeMe();
