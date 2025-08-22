@@ -47,7 +47,7 @@ int main(int argc, char **argv)
             std::cout << *it << " ";
         std::cout << std::endl;
 
-        double lduration = double(lend - lstart) / CLOCKS_PER_SEC * 1e6; // microseconds
+        double lduration = double(lend - lstart) / CLOCKS_PER_SEC * 1e6;
         std::cout << "Time to process a range of " << sortedLst.size()
                   << " elements with std::list : "
                   << lduration << " us" << std::endl;
@@ -60,5 +60,3 @@ int main(int argc, char **argv)
 
     return 0;
 }
-
-// ./PmergeMe $(shuf -i 1-100000 -n 3000)

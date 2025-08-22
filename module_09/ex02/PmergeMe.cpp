@@ -43,7 +43,6 @@ std::string PmergeMe::trim(const std::string &s) const
 
 
 
-
 bool PmergeMe::isAllDigits(const std::string& s) const
 {
     if (s.empty())
@@ -118,10 +117,9 @@ Container PmergeMe::generateInsertionOrder(int lastNum) const
 
 std::vector<int>    PmergeMe::mergeInsertionSortVector(std::vector<int> v) const
 {
-	// Already sorted
+
 	if (v.size() <= 1)
-	return v;
-	// Step 1: Form pairs and order them
+		return v;
 	std::vector<int>  mainChain;
 	std::vector<int>  pend;
 	for (unsigned int i=0; i<v.size()-1; i+=2)
@@ -203,6 +201,7 @@ std::list<int> PmergeMe::mergeInsertionSortList(std::list<int> lst) const
 
 	return mainChain;
 }
+
 // --- Getters -----
  std::vector<int>    PmergeMe::getVec() const 
  {

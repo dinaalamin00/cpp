@@ -11,7 +11,7 @@
 
 class BitcoinExchange {
 private:
-    std::map<std::string, double> _db; // stores date -> price from DB
+    std::map<std::string, double> _db;
 
     std::string trim(std::string s);
     bool isValidDate(const std::string &date);

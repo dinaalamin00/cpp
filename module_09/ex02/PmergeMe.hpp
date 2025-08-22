@@ -6,8 +6,8 @@
 #include <stdexcept>
 #include <algorithm>
 #include <vector>
-#include <cerrno>   // for errno, ERANGE
-#include <climits>  // for INT_MAX
+#include <cerrno> 
+#include <climits> 
 #include <cstdlib>  
 #include <list>
 
